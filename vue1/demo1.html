@@ -11,10 +11,10 @@
     <button v-on:click="fun1">改变</button>
     <br/>
     {{ keypad }}: <input v-on:keydown="fun2"/> <br/>
-    <div v-on:mouseover="fun3" style="background:red;
+    <div @mouseover="fun3" style="background:red;
         width:300px;height:100px;
         line-height:120px;">
-        <textarea v-on:mouseover="fun4">{{ mouseover }}</textarea>
+        <textarea @mouseover="fun4">{{ mouseover }}</textarea>
     </div>
 </div>
 
