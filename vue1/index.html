@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎光临</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ msg }} |
+        {{ num }} |
+        {{ num+1 }} |
+        {{ num+1>0?"OK":"NO" }} <br/>
+    </div>
+
+    <script>
+        let app1 = new Vue({
+            el: "#app",
+            data: {
+                msg: "你好",
+                num: 1
+            }
+        });
+    </script>
+</body>
+</html>
