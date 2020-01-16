@@ -2,22 +2,18 @@
 <html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>VUE指令: v-on</title>
+    <title>VUE指令: 事件修饰符</title>
     <script src="js/vue.js"></script>
 </head>
 <body>
 <div id="app">
-    {{ msg }}
-    <button v-on:click="fun1">改变</button>
-    <br/>
-    {{ keypad }}: <input v-on:keydown="fun2"/> <br/>
     <div @mouseover="fun3" style="background:red;
         width:300px;height:100px;
         line-height:120px;">
-        <textarea @mouseover="fun4">{{ mouseover }}</textarea>
+        <textarea @mouseover.stop @mouseover="fun4">{{ mouseover }}</textarea>
     </div>
-    <form action="http://www.itheima.com/">
-        <input type="submit" @click="fun2"/>
+    <form @submit.prevent action="http://www.itheima.com/">
+        <input type="submit"/>
     </form>
 </div>
 
@@ -40,7 +36,7 @@
                     this.keypad = code;
                 } else {
                     // 阻止事件的默认行为
-                    e.preventDefault();
+                    // e.preventDefault();
                 }
             },
             fun3: function (e) {
@@ -50,8 +46,8 @@
             fun4: function (e) {
                 this.num = this.num + 1;
                 this.mouseover = this.num;
-                // 阻止事件的传播行为
-                e.stopPropagation()
+                // 阻止时间的传播行为
+                // e.stopPropagation()
             }
         }
     });
