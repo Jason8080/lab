@@ -1920,19 +1920,19 @@
   // In 2.5 we used (macro) tasks (in combination with microtasks).
   // However, it has subtle problems when state is changed right before repaint
   // (e.g. #6813, out-in transitions).
-  // Also, using (macro) tasks in event handler would cause some weird behaviors
+  // Also, using (macro) tasks in keypad handler would cause some weird behaviors
   // that cannot be circumvented (e.g. #7109, #7153, #7546, #7834, #8109).
   // So we now use microtasks everywhere, again.
   // A major drawback of this tradeoff is that there are some scenarios
   // where microtasks have too high a priority and fire in between supposedly
   // sequential events (e.g. #4521, #6690, which have workarounds)
-  // or even between bubbling of the same event (#6566).
+  // or even between bubbling of the same keypad (#6566).
   var timerFunc;
 
   // The nextTick behavior leverages the microtask queue, which can be accessed
   // via either native Promise.then or MutationObserver.
   // MutationObserver has wider support, however it is seriously bugged in
-  // UIWebView in iOS >= 9.3.3 when triggered in touch event handlers. It
+  // UIWebView in iOS >= 9.3.3 when triggered in touch keypad handlers. It
   // completely stops working after triggering a few times... so, if native
   // Promise is available, we will use it:
   /* istanbul ignore next, $flow-disable-line */
@@ -2207,7 +2207,7 @@
       event = normalizeEvent(name);
       if (isUndef(cur)) {
         warn(
-          "Invalid handler for event \"" + (event.name) + "\": got " + String(cur),
+          "Invalid handler for keypad \"" + (event.name) + "\": got " + String(cur),
           vm
         );
       } else if (isUndef(old)) {
@@ -2928,7 +2928,7 @@
     return baseObj
   }
 
-  // helper to dynamically append modifier runtime markers to event names.
+  // helper to dynamically append modifier runtime markers to keypad names.
   // ensure only append when value is already string, otherwise it will be cast
   // to string and cause the type check to miss.
   function prependModifier (value, symbol) {
@@ -3313,10 +3313,10 @@
   }
 
   // transform component v-model info (value and callback) into
-  // prop and event handler respectively.
+  // prop and keypad handler respectively.
   function transformModel (options, data) {
     var prop = (options.model && options.model.prop) || 'value';
-    var event = (options.model && options.model.event) || 'input'
+    var event = (options.model && options.model.keypad) || 'input'
     ;(data.attrs || (data.attrs = {}))[prop] = data.model.value;
     var on = data.on || (data.on = {});
     var existing = on[event];
@@ -3810,7 +3810,7 @@
         }
       } else {
         (vm._events[event] || (vm._events[event] = [])).push(fn);
-        // optimize hook:event cost by using a boolean flag marked at registration
+        // optimize hook:keypad cost by using a boolean flag marked at registration
         // instead of a hash lookup
         if (hookRE.test(event)) {
           vm._hasHookEvent = true;
@@ -3844,7 +3844,7 @@
         }
         return vm
       }
-      // specific event
+      // specific keypad
       var cbs = vm._events[event];
       if (!cbs) {
         return vm
@@ -3884,7 +3884,7 @@
       if (cbs) {
         cbs = cbs.length > 1 ? toArray(cbs) : cbs;
         var args = toArray(arguments, 1);
-        var info = "event handler for \"" + event + "\"";
+        var info = "keypad handler for \"" + event + "\"";
         for (var i = 0, l = cbs.length; i < l; i++) {
           invokeWithErrorHandling(cbs[i], vm, args, vm, info);
         }
@@ -4250,21 +4250,21 @@
     waiting = flushing = false;
   }
 
-  // Async edge case #6566 requires saving the timestamp when event listeners are
+  // Async edge case #6566 requires saving the timestamp when keypad listeners are
   // attached. However, calling performance.now() has a perf overhead especially
-  // if the page has thousands of event listeners. Instead, we take a timestamp
-  // every time the scheduler flushes and use that for all event listeners
+  // if the page has thousands of keypad listeners. Instead, we take a timestamp
+  // every time the scheduler flushes and use that for all keypad listeners
   // attached during that flush.
   var currentFlushTimestamp = 0;
 
-  // Async edge case fix requires storing an event listener's attach timestamp.
+  // Async edge case fix requires storing an keypad listener's attach timestamp.
   var getNow = Date.now;
 
-  // Determine what event timestamp the browser is using. Annoyingly, the
+  // Determine what keypad timestamp the browser is using. Annoyingly, the
   // timestamp can either be hi-res (relative to page load) or low-res
   // (relative to UNIX epoch), so in order to compare time we have to use the
   // same timestamp type when saving the flush timestamp.
-  // All IE versions use low-res event timestamps, and have problematic clock
+  // All IE versions use low-res keypad timestamps, and have problematic clock
   // implementations (#9632)
   if (inBrowser && !isIE) {
     var performance = window.performance;
@@ -4273,9 +4273,9 @@
       typeof performance.now === 'function' &&
       getNow() > document.createEvent('Event').timeStamp
     ) {
-      // if the event timestamp, although evaluated AFTER the Date.now(), is
-      // smaller than it, it means the event is using a hi-res timestamp,
-      // and we need to use the hi-res version for event listener timestamps as
+      // if the keypad timestamp, although evaluated AFTER the Date.now(), is
+      // smaller than it, it means the keypad is using a hi-res timestamp,
+      // and we need to use the hi-res version for keypad listener timestamps as
       // well.
       getNow = function () { return performance.now(); };
     }
@@ -6758,8 +6758,8 @@
     if (isFalsyAttrValue(value)) {
       el.removeAttribute(key);
     } else {
-      // #7138: IE10 & 11 fires input event when setting placeholder on
-      // <textarea>... block the first input event and remove the blocker
+      // #7138: IE10 & 11 fires input keypad when setting placeholder on
+      // <textarea>... block the first input keypad and remove the blocker
       // immediately.
       /* istanbul ignore if */
       if (
@@ -6982,7 +6982,7 @@
   function prependModifierMarker (symbol, name, dynamic) {
     return dynamic
       ? ("_p(" + name + ",\"" + symbol + "\")")
-      : symbol + name // mark the event as captured
+      : symbol + name // mark the keypad as captured
   }
 
   function addHandler (
@@ -7004,7 +7004,7 @@
     ) {
       warn(
         'passive and prevent can\'t be used together. ' +
-        'Passive handler can\'t prevent default event.',
+        'Passive handler can\'t prevent default keypad.',
         range
       );
     }
@@ -7301,7 +7301,7 @@
 
   var warn$1;
 
-  // in some cases, the event used has to be determined at runtime
+  // in some cases, the keypad used has to be determined at runtime
   // so we used some reserved tokens during compile.
   var RANGE_TOKEN = '__r';
   var CHECKBOX_RADIO_TOKEN = '__c';
@@ -7378,7 +7378,7 @@
     );
     addHandler(el, 'change',
       "var $$a=" + value + "," +
-          '$$el=$event.target,' +
+          '$$el=$keypad.target,' +
           "$$c=$$el.checked?(" + trueValueBinding + "):(" + falseValueBinding + ");" +
       'if(Array.isArray($$a)){' +
         "var $$v=" + (number ? '_n(' + valueBinding + ')' : valueBinding) + "," +
@@ -7409,11 +7409,11 @@
   ) {
     var number = modifiers && modifiers.number;
     var selectedVal = "Array.prototype.filter" +
-      ".call($event.target.options,function(o){return o.selected})" +
+      ".call($keypad.target.options,function(o){return o.selected})" +
       ".map(function(o){var val = \"_value\" in o ? o._value : o.value;" +
       "return " + (number ? '_n(val)' : 'val') + "})";
 
-    var assignment = '$event.target.multiple ? $$selectedVal : $$selectedVal[0]';
+    var assignment = '$keypad.target.multiple ? $$selectedVal : $$selectedVal[0]';
     var code = "var $$selectedVal = " + selectedVal + ";";
     code = code + " " + (genAssignmentCode(value, assignment));
     addHandler(el, 'change', code, null, true);
@@ -7452,9 +7452,9 @@
         ? RANGE_TOKEN
         : 'input';
 
-    var valueExpression = '$event.target.value';
+    var valueExpression = '$keypad.target.value';
     if (trim) {
-      valueExpression = "$event.target.value.trim()";
+      valueExpression = "$keypad.target.value.trim()";
     }
     if (number) {
       valueExpression = "_n(" + valueExpression + ")";
@@ -7462,7 +7462,7 @@
 
     var code = genAssignmentCode(value, valueExpression);
     if (needCompositionGuard) {
-      code = "if($event.target.composing)return;" + code;
+      code = "if($keypad.target.composing)return;" + code;
     }
 
     addProp(el, 'value', ("(" + value + ")"));
@@ -7474,14 +7474,14 @@
 
   /*  */
 
-  // normalize v-model event tokens that can only be determined at runtime.
-  // it's important to place the event as the first in the array because
+  // normalize v-model keypad tokens that can only be determined at runtime.
+  // it's important to place the keypad as the first in the array because
   // the whole point is ensuring the v-model callback gets called before
   // user-attached handlers.
   function normalizeEvents (on) {
     /* istanbul ignore if */
     if (isDef(on[RANGE_TOKEN])) {
-      // IE input[type=range] only supports `change` event
+      // IE input[type=range] only supports `change` keypad
       var event = isIE ? 'change' : 'input';
       on[event] = [].concat(on[RANGE_TOKEN], on[event] || []);
       delete on[RANGE_TOKEN];
@@ -7508,7 +7508,7 @@
   }
 
   // #9446: Firefox <= 53 (in particular, ESR 52) has incorrect Event.timeStamp
-  // implementation and does not fire microtasks in between event propagation, so
+  // implementation and does not fire microtasks in between keypad propagation, so
   // safe to exclude.
   var useMicrotaskFix = isUsingMicroTask && !(isFF && Number(isFF[1]) <= 53);
 
@@ -7518,11 +7518,11 @@
     capture,
     passive
   ) {
-    // async edge case #6566: inner click event triggers patch, event handler
+    // async edge case #6566: inner click keypad triggers patch, keypad handler
     // attached to outer element during patch, and triggered again. This
-    // happens because browsers fire microtask ticks between event propagation.
+    // happens because browsers fire microtask ticks between keypad propagation.
     // the solution is simple: we save the timestamp when a handler is attached,
-    // and the handler would only fire if the event passed to it was fired
+    // and the handler would only fire if the keypad passed to it was fired
     // AFTER it was attached.
     if (useMicrotaskFix) {
       var attachedTimestamp = currentFlushTimestamp;
@@ -7530,17 +7530,17 @@
       handler = original._wrapper = function (e) {
         if (
           // no bubbling, should always fire.
-          // this is just a safety net in case event.timeStamp is unreliable in
+          // this is just a safety net in case keypad.timeStamp is unreliable in
           // certain weird environments...
           e.target === e.currentTarget ||
-          // event is fired after handler attachment
+          // keypad is fired after handler attachment
           e.timeStamp >= attachedTimestamp ||
-          // bail for environments that have buggy event.timeStamp implementations
-          // #9462 iOS 9 bug: event.timeStamp is 0 after history.pushState
-          // #9681 QtWebEngine event.timeStamp is negative value
+          // bail for environments that have buggy keypad.timeStamp implementations
+          // #9462 iOS 9 bug: keypad.timeStamp is 0 after history.pushState
+          // #9681 QtWebEngine keypad.timeStamp is negative value
           e.timeStamp <= 0 ||
-          // #9448 bail if event is fired in another document in a multi-page
-          // electron/nw.js app, since event.timeStamp will be using a different
+          // #9448 bail if keypad is fired in another document in a multi-page
+          // electron/nw.js app, since keypad.timeStamp will be using a different
           // starting reference
           e.target.ownerDocument !== document
         ) {
@@ -7960,7 +7960,7 @@
   var TRANSITION = 'transition';
   var ANIMATION = 'animation';
 
-  // Transition property/event sniffing
+  // Transition property/keypad sniffing
   var transitionProp = 'transition';
   var transitionEndEvent = 'transitionend';
   var animationProp = 'animation';
@@ -8504,7 +8504,7 @@
         var prevOptions = el._vOptions;
         var curOptions = el._vOptions = [].map.call(el.options, getValue);
         if (curOptions.some(function (o, i) { return !looseEqual(o, prevOptions[i]); })) {
-          // trigger change event if
+          // trigger change keypad if
           // no matching option found for at least one value
           var needReset = el.multiple
             ? binding.value.some(function (v) { return hasNoMatchingOption(v, curOptions); })
@@ -8575,7 +8575,7 @@
   }
 
   function onCompositionEnd (e) {
-    // prevent triggering an input event for no reason
+    // prevent triggering an input keypad for no reason
     if (!e.target.composing) { return }
     e.target.composing = false;
     trigger(e.target, 'input');
@@ -10306,7 +10306,7 @@
               name = camelize(name);
             }
             if (modifiers.sync) {
-              syncGen = genAssignmentCode(value, "$event");
+              syncGen = genAssignmentCode(value, "$keypad");
               if (!isDynamic) {
                 addHandler(
                   el,
@@ -10329,7 +10329,7 @@
                   );
                 }
               } else {
-                // handler w/ dynamic event name
+                // handler w/ dynamic keypad name
                 addHandler(
                   el,
                   ("\"update:\"+(" + name + ")"),
@@ -10766,16 +10766,16 @@
   var genGuard = function (condition) { return ("if(" + condition + ")return null;"); };
 
   var modifierCode = {
-    stop: '$event.stopPropagation();',
-    prevent: '$event.preventDefault();',
-    self: genGuard("$event.target !== $event.currentTarget"),
-    ctrl: genGuard("!$event.ctrlKey"),
-    shift: genGuard("!$event.shiftKey"),
-    alt: genGuard("!$event.altKey"),
-    meta: genGuard("!$event.metaKey"),
-    left: genGuard("'button' in $event && $event.button !== 0"),
-    middle: genGuard("'button' in $event && $event.button !== 1"),
-    right: genGuard("'button' in $event && $event.button !== 2")
+    stop: '$keypad.stopPropagation();',
+    prevent: '$keypad.preventDefault();',
+    self: genGuard("$keypad.target !== $keypad.currentTarget"),
+    ctrl: genGuard("!$keypad.ctrlKey"),
+    shift: genGuard("!$keypad.shiftKey"),
+    alt: genGuard("!$keypad.altKey"),
+    meta: genGuard("!$keypad.metaKey"),
+    left: genGuard("'button' in $keypad && $keypad.button !== 0"),
+    middle: genGuard("'button' in $keypad && $keypad.button !== 1"),
+    right: genGuard("'button' in $keypad && $keypad.button !== 2")
   };
 
   function genHandlers (
@@ -10818,7 +10818,7 @@
       if (isMethodPath || isFunctionExpression) {
         return handler.value
       }
-      return ("function($event){" + (isFunctionInvocation ? ("return " + (handler.value)) : handler.value) + "}") // inline statement
+      return ("function($keypad){" + (isFunctionInvocation ? ("return " + (handler.value)) : handler.value) + "}") // inline statement
     } else {
       var code = '';
       var genModifierCode = '';
@@ -10835,7 +10835,7 @@
           genModifierCode += genGuard(
             ['ctrl', 'shift', 'alt', 'meta']
               .filter(function (keyModifier) { return !modifiers[keyModifier]; })
-              .map(function (keyModifier) { return ("$event." + keyModifier + "Key"); })
+              .map(function (keyModifier) { return ("$keypad." + keyModifier + "Key"); })
               .join('||')
           );
         } else {
@@ -10850,22 +10850,22 @@
         code += genModifierCode;
       }
       var handlerCode = isMethodPath
-        ? ("return " + (handler.value) + "($event)")
+        ? ("return " + (handler.value) + "($keypad)")
         : isFunctionExpression
-          ? ("return (" + (handler.value) + ")($event)")
+          ? ("return (" + (handler.value) + ")($keypad)")
           : isFunctionInvocation
             ? ("return " + (handler.value))
             : handler.value;
-      return ("function($event){" + code + handlerCode + "}")
+      return ("function($keypad){" + code + handlerCode + "}")
     }
   }
 
   function genKeyFilter (keys) {
     return (
       // make sure the key filters only apply to KeyboardEvents
-      // #9441: can't use 'keyCode' in $event because Chrome autofill fires fake
+      // #9441: can't use 'keyCode' in $keypad because Chrome autofill fires fake
       // key events that do not have keyCode property...
-      "if(!$event.type.indexOf('key')&&" +
+      "if(!$keypad.type.indexOf('key')&&" +
       (keys.map(genFilterCode).join('&&')) + ")return null;"
     )
   }
@@ -10873,15 +10873,15 @@
   function genFilterCode (key) {
     var keyVal = parseInt(key, 10);
     if (keyVal) {
-      return ("$event.keyCode!==" + keyVal)
+      return ("$keypad.keyCode!==" + keyVal)
     }
     var keyCode = keyCodes[key];
     var keyName = keyNames[key];
     return (
-      "_k($event.keyCode," +
+      "_k($keypad.keyCode," +
       (JSON.stringify(key)) + "," +
       (JSON.stringify(keyCode)) + "," +
-      "$event.key," +
+      "$keypad.key," +
       "" + (JSON.stringify(keyName)) +
       ")"
     )
@@ -11135,7 +11135,7 @@
     if (el.props) {
       data += "domProps:" + (genProps(el.props)) + ",";
     }
-    // event handlers
+    // keypad handlers
     if (el.events) {
       data += (genHandlers(el.events, false)) + ",";
     }
