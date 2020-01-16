@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>VUE指令: 按键修饰符</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{ keypad }}: <input v-on:keydown.enter="fun2"/> <br/>
+    <div @mouseover="fun3" style="background:red;
+        width:300px;height:100px;
+        line-height:120px;">
+        <textarea @mouseover.stop="fun4">{{ mouseover }}</textarea>
+    </div>
+    <form @submit.prevent action="http://www.itheima.com/">
+        <input type="submit"/>
+    </form>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "你好",
+            keypad: "按键",
+            mouseover: "悬停",
+            num: 0
+        },
+        methods: {
+            fun1: function () {
+                this.msg = "哦啦.."
+            },
+            fun2: function (e) {
+                let code = e.keyCode;
+                alert(code);
+                if (code > 47 && code < 58) {
+                    this.keypad = code;
+                } else {
+                    // 阻止事件的默认行为
+                    // e.preventDefault();
+                }
+            },
+            fun3: function (e) {
+                this.num = this.num + 1;
+                this.mouseover = this.num;
+            },
+            fun4: function (e) {
+                this.num = this.num + 1;
+                this.mouseover = this.num;
+                // 阻止时间的传播行为
+                // e.stopPropagation()
+            }
+        }
+    });
+</script>
+</body>
+</html>
