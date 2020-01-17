@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的声明周期</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.js"></script>
+</head>
+<body>
+<div id="app">
+
+</div>
+
+<script>
+    axios.defaults.baseURL = 'http://baidu.com';
+    config = {
+        proxy: {
+            host: '127.0.0.1',
+            port: 9000,
+            auth: {
+                username: 'mikeymike',
+                password: 'rapunz3l'
+            }
+        }
+    }
+    new Vue({
+        el: "#app",
+        data: {
+            flag: true
+        },
+        methods: {
+            get: function () {
+                axios.get("/", config)
+                    .then(function (res) {
+                        console.log(res);
+                    })
+                    .catch(function (e) {
+                        console.log(e);
+                    });
+            }
+        },
+        created: function () {
+            this.get();
+        }
+    });
+</script>
+</body>
+</html>

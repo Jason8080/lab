@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的声明周期</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <table border="1">
+        <tr>
+            <th>生命周期</th>
+            <th>过程</th>
+            <th>生命周期</th>
+            <th>操作栏</th>
+        </tr>
+        <tr>
+            <td id="beforeCreate">创建前: beforeCreate: </td>
+            <td>{{flag}}: 初始化数据;初始化事件</td>
+            <td id="created">创建后: created: </td>
+            <td class="no"></td>
+        </tr>
+        <tr>
+            <td id="beforeMount">挂载前: beforeMount: </td>
+            <td>{{flag}}: 挂载数据(会重新生成内容)</td>
+            <td id="mounted">挂载后: mounted: </td>
+            <td class="no"></td>
+        </tr>
+        <tr>
+            <td id="beforeUpdate">更新前: beforeUpdate: </td>
+            <td>{{flag}}: 更新数据</td>
+            <td id="updated">更新后: updated: </td>
+            <td class="no"><button v-on:click="fun1">更新</button></td>
+        </tr>
+        <tr>
+            <td id="beforeDestroy">销毁前: beforeDestroy: </td>
+            <td>{{flag}}: 销毁应用</td>
+            <td id="destroyed">销毁后: destroyed: </td>
+            <td class="no"><button v-on:click="fun2">销毁</button></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    var ok = function (id) {
+        var e = document.getElementById(id);
+        if(e!=undefined && e.className!='no'){
+            var next = e.nextElementSibling;
+            e.innerHTML+="OK";
+            if(next!=undefined && next.className!='no'){
+                var innerHTML = next.innerHTML;
+                console.log(innerHTML);
+            }
+        }
+    };
+    var app = new Vue({
+        el: "#app",
+        data: {
+            flag: true
+        },
+        methods: {
+            fun0: function () {
+
+            },
+            fun1: function () {
+                this.flag = !this.flag;
+            },
+            fun2: function () {
+                this.$destroy();
+            }
+        },
+        beforeCreate: function () {
+            ok("beforeCreate");
+        },
+        created: function () {
+            ok("created");
+            ok("beforeMount");
+        },
+        beforeMount: function () {
+            // 挂载前方法不能对页面内容进行调整 !!!
+            // 因为挂载: 是将源页面解析vue内容后重新生成的过程。
+            // 源码: vue.js -> line number: 6550
+            /**
+             *   // destroy old node
+             *   if (isDef(parentElm)) {
+             *       removeVnodes([oldVnode], 0, 0);
+             *   } else if (isDef(oldVnode.tag)) {
+             *       invokeDestroyHook(oldVnode);
+             *   }
+             */
+            ok("beforeMount");
+        },
+        mounted: function () {
+            ok("mounted");
+        },
+        beforeUpdate: function () {
+            ok("beforeUpdate");
+        },
+        updated: function () {
+            ok("updated");
+        },
+        beforeDestroy: function () {
+            ok("beforeDestroy");
+        },
+        destroyed: function () {
+            ok("destroyed");
+        }
+    });
+</script>
+</body>
+</html>
