@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>VUE指令: v-bind (是否渲染)</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <span v-if="flag">KKK</span>
+    <span v-show="flag">JJJ</span> <br/>
+    <button v-on:click="fun1">开关</button>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            flag: true
+        },
+        methods: {
+            fun1: function () {
+                this.flag = !this.flag;
+            }
+        }
+    });
+</script>
+</body>
+</html>

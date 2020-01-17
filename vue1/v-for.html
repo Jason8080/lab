@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>VUE指令: v-bind (集合遍历)</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(a,i) in arr">{{i}}=========={{a}}</li>
+    </ul>
+    <ul>
+        <li v-for="(u, k) in user">{{k}}=========={{u}}</li>
+    </ul>
+
+    <ul v-for="(u, i) in users">
+        {{i+1}} -
+        <ul>
+            <li v-for="(o, k) in u">{{k}}=========={{o}}</li>
+        </ul>
+    </ul>
+
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            arr: ['a', 'b', 'c', 'd'],
+            user: {
+                id: 1,
+                name: "Jason",
+                age: 18
+            },
+            users: [
+                {id: 1, name: "Jason1", age: 18},
+                {id: 2, name: "Jason2", age: 19},
+                {id: 3, name: "Jason3", age: 20}
+            ]
+        },
+        methods: {
+            fun1: function () {
+
+            }
+        }
+    });
+</script>
+</body>
+</html>

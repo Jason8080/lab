@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>VUE指令: v-bind (标签属性)</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <font v-bind:color="a">这里有点颜色</font> <br/>
+    <font :color="a">这里有点颜色</font> <br/>
+    <a v-bind="{href:url+'?'+'id='+id,name:'OK'}">BaiDu</a>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            a: "red",
+            id: 888,
+            url: "http://baidu.com/"
+        },
+        methods: {
+
+        }
+    });
+</script>
+</body>
+</html>

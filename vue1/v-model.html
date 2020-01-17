@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>VUE指令: v-bind (标签内容)</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <form>
+        用户名称: <input type="text" v-model="user.username" />
+        用户年龄: <input type="text" v-model="user.age"/>
+        <button type="button" @click="fun1">提交</button>
+    </form>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            user: {
+                username: "Jason",
+                age: 18
+            },
+        },
+        methods: {
+            fun1: function () {
+                alert(this.user.username +","+ this.user.age)
+                this.user.age = 20;
+            }
+        }
+    });
+</script>
+</body>
+</html>
