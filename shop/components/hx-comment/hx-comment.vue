@@ -62,11 +62,12 @@
 							</view>
 							<view class="evaluate-content">
 								<text>{{ item.content || '用户暂未评价' }}</text>
-								<view class="imgs" v-if="item.imgs">
+								<vue-preview :imgs="item.imgs"></vue-preview>
+								<!-- <view class="imgs" v-if="item.imgs">
 									<block v-for="(imgurl, index) in item.imgs" :key="index">
-										<view class="imgs-box"><image :src="imgurl" mode="widthFix" style="width: 100%;" @click="previewImg(imgurl,item.imgs)"></image></view>
+										<view class="imgs-box"><image :src="imgurl" mode="widthFix" style="width: 100%;" @click="previewImg(index, imgurl, item.imgs)"></image></view>
 									</block>
-								</view>
+								</view> -->
 							</view>
 						</view>
 					</view>
@@ -80,11 +81,15 @@
 </template>
 
 <script>
-	import uniRate from '@/components/uni-rate/uni-rate.vue'
+	import uniRate from '@/components/uni-rate/uni-rate.vue';
+	import vuePreview from '@/components/vue-preview/vue-preview.vue';
 	
 	export default {
 		name: "hx-comment",
-		components: {uniRate},
+		components: {
+			uniRate,
+			vuePreview
+		},
 		props: {
 			//评价列表数据
 			listData: {
@@ -103,7 +108,9 @@
 		created() {
 		},
 		methods: {
-			
+			previewImg(index, img, imgs){
+				alert(index, img, imgs);
+			}
 		}
 	}
 </script>
