@@ -5,13 +5,12 @@
 		</block>
 	</view>
 </template>
-
 <script>
 	import viewJs from "./vue-preview.min.js";
-
+	
 	export default {
-		name: "vue-preview",
-		comments: {
+		neme: "vue-preview",
+		comments:{
 			viewJs
 		},
 		props: {
@@ -25,11 +24,27 @@
 		},
 		data() {
 			return {
-				
-			}
+			};
 		},
 		methods: {
-			
+			previewImg(index, img, imgs){
+				alert(index);
+			}
+		},
+	};
+</script>
+<style lang="scss">
+	.imgs {
+		display: flex;
+		flex-wrap: wrap;
+		padding-top: 4px;
+		.imgs-box {
+			width: 25%;
+			padding-right: 5px;
+			box-sizing: border-box;
+			image{
+				border-radius: 4px;
+			}
 		}
 	}
-</script>
+</style>

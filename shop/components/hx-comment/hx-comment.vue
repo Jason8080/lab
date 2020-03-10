@@ -88,7 +88,7 @@
 		name: "hx-comment",
 		components: {
 			uniRate,
-			vuePreview
+			vuePreview,
 		},
 		props: {
 			//评价列表数据
@@ -108,9 +108,7 @@
 		created() {
 		},
 		methods: {
-			previewImg(index, img, imgs){
-				alert(index, img, imgs);
-			}
+			
 		}
 	}
 </script>
