@@ -31,7 +31,7 @@
 				uni.setStorageSync('img', img);
 				uni.setStorageSync('imgs', imgs);
 				uni.navigateTo({
-					url: '/components/vue-preview/imgList/imgList'
+					url: '/components/vue-preview/imgPreview/imgPreview'
 				});
 			}
 		},
