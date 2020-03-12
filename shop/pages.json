@@ -10,15 +10,6 @@
 			}
 		},
 		{
-			"path": "components/vue-preview/imgList/imgList",
-			"style": {
-				"navigationBarTitleText": "闪购",
-				"app-plus":{
-					"scrollIndicator": "none"
-				}
-			}
-		},
-		{
 			"path": "components/vue-preview/imgPreview/imgPreview",
 			"style": {
 				"navigationBarTitleText": "闪购",

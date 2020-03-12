@@ -16,7 +16,6 @@
 </template>
 
 <script>
-	let a;
 	export default {
 		data() {
 			return {
@@ -44,8 +43,7 @@
 				this.img = uni.getStorageSync("img");
 			},
 			changeSwiper(e) {
-				a = e;
-				this.current = this.current + 1;
+				this.current = e.target.current;
 			}
 		}
 	};
