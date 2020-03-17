@@ -8,6 +8,8 @@ const storeData = {
 		avatar: '/static/face/face_2.jpg',
 		//横幅图片
 		banner: '/static/face/banner.jpg',
+		//横幅图片
+		merchantQr: '/static/qr/merchantQr.jpg',
 		//商家住址
 		address: '新疆阿克苏是他北路2号',
 		//配送时间
