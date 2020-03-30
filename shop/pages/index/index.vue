@@ -312,8 +312,11 @@
 	import hxNumberBox from "@/components/uni-number-box/uni-number-box.vue";
 	import hxComment from "@/components/hx-comment/hx-comment.vue";
 	import gmModel from '@/components/gm-model/gm-model.vue';
-	//引入测试数据
-	import testData from "@/common/testdata.js";
+	//引入相关数据
+	import merchant from "@/common/merchant-data.js";
+	import comment from "@/common/comment-data.js";
+	import goods from "@/common/goods-data.js";
+	import category from "@/common/category-data.js";
 
 	var statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
 
@@ -329,13 +332,13 @@
 		data() {
 			return {
 				//商家信息
-				storeData: testData.storeData,
+				storeData: merchant.storeData,
 				//商品列表
-				goodsList: testData.goodsData,
+				goodsList: goods.goodsData,
 				//商品分类信息列表
-				categoryList: testData.categoryData,
+				categoryList: category.categoryData,
 				//评论列表
-				commentList: testData.commentData,
+				commentList: comment.commentData,
 
 				navSearchWidth: 10,
 				navSearchBgOpacity: 0,
