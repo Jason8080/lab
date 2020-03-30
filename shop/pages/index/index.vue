@@ -452,7 +452,11 @@
 				let that = this;
 				
 				// 初始化商品分类
-				this.categoryData = category.categoryInit();
+				category.categoryLoad(function(data){
+					data.forEach(function(o, i){
+						that.categoryList[i].name=o.name;
+					});
+				});
 				
 				//假设这是从后台获取的商品数据
 				let goods = this.goodsList;
