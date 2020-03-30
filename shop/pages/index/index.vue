@@ -327,7 +327,7 @@
 			uniIcons,
 			hxNumberBox,
 			hxComment,
-			gmModel
+			gmModel,
 		},
 		data() {
 			return {
@@ -450,6 +450,10 @@
 
 			init() {
 				let that = this;
+				
+				// 初始化商品分类
+				this.categoryData = category.categoryInit();
+				
 				//假设这是从后台获取的商品数据
 				let goods = this.goodsList;
 				//商品初始化

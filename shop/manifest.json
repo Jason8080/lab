@@ -76,7 +76,7 @@
         "title" : "闪购",
         "optimization" : {
             "treeShaking" : {
-                "enable" : true
+                "enable" : false
             }
         },
         "sdkConfigs" : {
@@ -87,7 +87,8 @@
             }
         },
         "devServer" : {
-            "port" : ""
+            "port" : "",
+            "https" : false
         },
         "uniStatistics" : {
             "enable" : true

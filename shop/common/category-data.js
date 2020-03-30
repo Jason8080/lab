@@ -7,5 +7,14 @@ const categoryData = [
 ];
 	
 export default {
-	categoryData
+	categoryData,
+	categoryInit: async function(){
+		let that = this;
+		/* await */ uni.request({			url: "http://192.168.1.101:8080/category/list", 
+			data: {},
+			success: function(data) {
+				console.log(data);
+				that.categoryData = data;			}		});
+		return that.categoryData;
+	}
 }
