@@ -10,14 +10,21 @@ const categoryData = [
 	
 export default {
 	categoryData,
-	categoryLoad: /* async */ function(fun){
-		/* await */ uni.request({			url: "http://localhost:8080/category/list", 
+	categoryLoad: async function(){
+		let that = this;
+		await uni.request({			url: "http://localhost:8080/category/list", 
 			data: {},		}).then(function(res){
 			let data;
 			try{
 				data = res[1].data;
 			} catch(e){}
-			fun(data);
+			if(data!=undefined){
+				that.categoryData = [];
+				data.forEach(function(o, i){
+					that.categoryData.push(o);
+				});
+			}
 		});
+		return that.categoryData;
 	}
 }
