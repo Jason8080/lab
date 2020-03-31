@@ -87,7 +87,7 @@
             }
         },
         "devServer" : {
-            "port" : "",
+            "port" : 80,
             "https" : false
         },
         "uniStatistics" : {

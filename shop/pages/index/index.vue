@@ -427,8 +427,10 @@
 			//屏幕高度 - 头部导航高度 - 状态栏高度 - 分页高度
 			this.mainHeight = sysInfo.screenHeight - 43 - statusBarHeight - 40 + 'px';
 		},
+		beforeMount() {
+		},
 		mounted() {
-			let that = this
+			let that = this;
 			that.init();
 			this.calcSize();
 		},
@@ -450,12 +452,14 @@
 
 			init() {
 				let that = this;
-				
 				// 初始化商品分类
 				category.categoryLoad(function(data){
-					data.forEach(function(o, i){
-						that.categoryList[i].name=o.name;
-					});
+					if(data!=undefined){
+						that.categoryList = [];
+						data.forEach(function(o, i){
+							that.categoryList.push(o);
+						});
+					}
 				});
 				
 				//假设这是从后台获取的商品数据
