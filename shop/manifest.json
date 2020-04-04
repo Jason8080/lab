@@ -92,7 +92,8 @@
         },
         "uniStatistics" : {
             "enable" : true
-        }
+        },
+        "domain" : "gmlee.cn"
     },
     "mp-alipay" : {
         "uniStatistics" : {
