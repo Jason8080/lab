@@ -6,17 +6,18 @@ const commentData = {
 	delivery: 99,
 	commentList: [
 		{
-			headerImg: "/static/face/face_2.jpg",
+			headerImg: "/static/www/user_avatar.jpg",
 			userName: "李香兰",
 			rate:5,
 			createTime: "2019.04.12",
 			content: "好评",
 			imgList:[
-				'/static/face/face.jpg',
-				'/static/face/p10.jpg',
-				'/static/face/face_14.jpg',
-				'/static/face/face.jpg',
-				'/static/face/p10.jpg',
+				'/static/comments/1.jpg',
+				'/static/comments/2.jpg',
+				'/static/comments/3.jpg',
+				'/static/comments/4.jpg',
+				'/static/comments/5.jpg',
+				'/static/comments/6.jpg',
 			]
 		}
 	]
