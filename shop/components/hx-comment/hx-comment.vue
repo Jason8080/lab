@@ -51,21 +51,21 @@
 			<view class="lists" v-if="listData.length > 0">
 				<block v-for="(item, index_) in listData" :key="index_">
 					<view class="item">
-						<view class="icon"><image :src="item.header_img" mode="widthFix" style="width:100%" /></view>
+						<view class="icon"><image :src="item.headerImg" mode="widthFix" style="width:100%" /></view>
 						<view class="info">
 							<view class="name-time">
-								<text class="name">{{ item.user_name }}</text>
-								<text class="time">{{ item.create_time }}</text>
+								<text class="name">{{ item.userName }}</text>
+								<text class="time">{{ item.createTime }}</text>
 							</view>
 							<view class="stars">
 								<text>评分</text> <uni-rate size="14" value="4.5"></uni-rate>
 							</view>
 							<view class="evaluate-content">
 								<text>{{ item.content || '用户暂未评价' }}</text>
-								<vue-preview :imgs="item.imgs"></vue-preview>
-								<!-- <view class="imgs" v-if="item.imgs">
-									<block v-for="(imgurl, index) in item.imgs" :key="index">
-										<view class="imgs-box"><image :src="imgurl" mode="widthFix" style="width: 100%;" @click="previewImg(index, imgurl, item.imgs)"></image></view>
+								<vue-preview :imgs="item.imgList"></vue-preview>
+								<!-- <view class="imgs" v-if="item.imgList">
+									<block v-for="(imgurl, index) in item.imgList" :key="index">
+										<view class="imgs-box"><image :src="imgurl" mode="widthFix" style="width: 100%;" @click="previewImg(index, imgurl, item.imgList)"></image></view>
 									</block>
 								</view> -->
 							</view>

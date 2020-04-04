@@ -1,67 +1,38 @@
 //评论数据
-const commentData = [
+const commentList = [
 	{
-		header_img: "/static/face/face_2.jpg",
-		user_name: "测试1",
+		headerImg: "/static/face/face_2.jpg",
+		userName: "测试1",
 		rate:5,
-		create_time: "2019.04.12",
+		createTime: "2019.04.12",
 		content: "好评",
-		imgs:[
+		imgList:[
 			'/static/face/face.jpg',
 			'/static/face/p10.jpg',
 			'/static/face/face_14.jpg',
 			'/static/face/face.jpg',
 			'/static/face/p10.jpg',
 		]
-	},
-	{
-		content: "中评",
-		create_time: "2019.04.12",
-		header_img: "/static/face/face_12.jpg",
-		user_name: "测试2",
-		rate:4,
-		// imgs:[]
-	},
-	{
-		content: "",
-		create_time: "2019.04.12",
-		header_img: "/static/face/face_15.jpg",
-		user_name: "测试3",
-		rate:2,
-		// imgs:[]
-	},{
-		content: "好评",
-		create_time: "2019.04.12",
-		header_img: "/static/face/face_2.jpg",
-		user_name: "测试1",
-		rate:5,
-		imgs:[
-			'/static/face/face.jpg',
-			'/static/face/p10.jpg',
-			'/static/face/face_14.jpg',
-			'/static/face/face.jpg',
-			'/static/face/p10.jpg',
-		]
-	},
-	{
-		content: "中评",
-		create_time: "2019.04.12",
-		header_img: "/static/face/face_12.jpg",
-		user_name: "测试2",
-		rate:3.5,
-		// imgs:[]
-	},
-	{
-		content: "",
-		create_time: "2019.04.12",
-		header_img: "/static/face/face_15.jpg",
-		user_name: "测试3",
-		rate:2.3,
-		// imgs:[]
-	},
+	}
 ];
 
 
 export default {
-	commentData
+	commentList,
+	commentLoad: async function(){
+		let that = this;
+		await uni.request({url: "http://localhost:8080/comment/1/1/list"}).then(function(res){
+			let data;
+			try{
+				data = res[1].data;
+			} catch(e){}
+			if(data!=undefined){
+				that.commentList = [];
+				data.forEach(function(o, i){
+					that.commentList.push(o);
+				});
+			}
+		});
+		return that.commentList;
+	}
 }

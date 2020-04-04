@@ -336,7 +336,7 @@
 				//商品分类信息列表
 				categoryList: category.categoryList,
 				//评论列表
-				commentList: comment.commentData,
+				commentList: comment.commentList,
 
 				navSearchWidth: 10,
 				navSearchBgOpacity: 0,
@@ -450,6 +450,8 @@
 				category.categoryLoad().then(data => that.categoryList=data);
 				// 初始化商店数据
 				merchant.storeLoad().then(data => that.storeData=data);
+				// 初始化评论数据
+				comment.commentLoad().then(data => that.commentList=data);
 				
 				//假设这是从后台获取的商品数据
 				let goods = that.goodsList;
