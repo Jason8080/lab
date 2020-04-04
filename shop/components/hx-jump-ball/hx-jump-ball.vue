@@ -1,11 +1,13 @@
 <template>
 	<view class="hx-jump-ball">
+		<!-- 
 		<view class="ballBox" :animation="ballBoxAnimationData" :style="{'z-index':index}">
 			<view class="ballOuter" 
 			:animation="ballOuterAnimationData" 
 			:style="{width:ballWidth*2 + 'upx',height:ballHeight*2 + 'upx','background-color':backgroundColor,'background-image': backgroundImage ?`url(${backgroundImage})`: ''}">
 			</view>
 		</view>
+		 -->
 	</view>
 </template>
 

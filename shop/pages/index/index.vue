@@ -425,8 +425,6 @@
 			//屏幕高度 - 头部导航高度 - 状态栏高度 - 分页高度
 			this.mainHeight = sysInfo.screenHeight - 43 - statusBarHeight - 40 + 'px';
 		},
-		beforeMount() {
-		},
 		mounted() {
 			let that = this;
 			that.init();
@@ -446,12 +444,12 @@
 			let that = this
 		},
 		methods: {
-
-
 			init() {
 				let that = this;
 				// 初始化商品分类
 				category.categoryLoad().then(data => that.categoryList=data);
+				// 初始化商店数据
+				merchant.storeLoad().then(data => that.storeData=data);
 				
 				//假设这是从后台获取的商品数据
 				let goods = that.goodsList;

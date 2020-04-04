@@ -23,7 +23,7 @@ export default {
 	categoryList,
 	categoryLoad: async function(){
 		let that = this;
-		await uni.request({url: "http://localhost:8080/category/list"}).then(function(res){
+		await uni.request({url: "http://localhost:8080/1/category/list"}).then(function(res){
 			let data;
 			try{
 				data = res[1].data;
