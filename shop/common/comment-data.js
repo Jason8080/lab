@@ -27,7 +27,7 @@ export default {
 	commentData,
 	commentLoad: async function(){
 		let that = this;
-		await uni.request({url: "http://localhost:8080/comment/1/1/list"}).then(function(res){
+		await uni.request({url: "http://localhost:8080/comment/store/1"}).then(function(res){
 			let data;
 			try{
 				data = res[1].data;
