@@ -162,7 +162,7 @@
 							<view class="evaluate-box-body">
 
 							</view>
-							<hx-comment :listData="commentList"></hx-comment>
+							<hx-comment :commentData="commentData"></hx-comment>
 						</view>
 					</scroll-view>
 				</swiper-item>
@@ -332,11 +332,11 @@
 				//商家信息
 				storeData: merchant.storeData,
 				//商品列表
-				goodsList: category.goodsList,
+				goodsList: category.categoryList[0].goodsList,
 				//商品分类信息列表
 				categoryList: category.categoryList,
 				//评论列表
-				commentList: comment.commentList,
+				commentData: comment.commentData,
 
 				navSearchWidth: 10,
 				navSearchBgOpacity: 0,
@@ -411,7 +411,7 @@
 				touchData: {},
 				//页面滚动条距离顶部的距离
 				pageScrollTop: 0,
-				// 微信支付模态弹窗初始值
+				// 联系商家模态窗初始值
 				showModal: false,
 			}
 		},
@@ -451,14 +451,13 @@
 				// 初始化商店数据
 				merchant.storeLoad().then(data => that.storeData=data);
 				// 初始化评论数据
-				comment.commentLoad().then(data => that.commentList=data);
+				comment.commentLoad().then(data => that.commentData=data);
 				
 				//假设这是从后台获取的商品数据
 				let goods = that.goodsList;
 				//商品初始化
 
 				for (let i in goods) {
-
 					goods[i].purchases = 3
 				}
 

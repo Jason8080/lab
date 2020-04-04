@@ -2,9 +2,9 @@
 const storeData = 
 {
 	//商家唯一标识
-	storeId: '168',
+	storeId: '1',
 	//商家名称
-	storeName: '小太阳商店',
+	storeName: '闪购自营店',
 	//头像
 	avatar: '/static/face/face_2.jpg',
 	//横幅图片
@@ -12,7 +12,7 @@ const storeData =
 	//横幅图片
 	merchantQr: '/static/qr/merchantQr.jpg',
 	//商家住址
-	address: '新疆阿克苏是他北路2号',
+	address: '江西省抚州市东乡区雄岚峰',
 	//配送时间
 	deliveryTime: '11:00~20:30',
 	//联系电话

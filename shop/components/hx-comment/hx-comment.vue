@@ -3,7 +3,7 @@
 		<view class="hx-comment_basic-info">
 			<view class="hx-comment_basic-info_left">
 				<view class="hx-comment_basic-info_left_top">
-					<text>3.5</text>
+					<text>{{ commentData.totalScore }}</text>
 				</view>
 				<view class="hx-comment_basic-info_left_bottom">
 					<text>商家评分</text>
@@ -15,10 +15,10 @@
 						<text>包装</text>
 					</view>
 					<view class="hx-comment_basic-info_center_item_center">
-						<uni-rate size="14" value="3.6"></uni-rate>
+						<uni-rate size="14" :value="commentData.packaging"></uni-rate>
 					</view>
 					<view class="hx-comment_basic-info_center_item_right">
-						<text>3.6</text>
+						<text>{{ commentData.packaging }}</text>
 					</view>
 				</view>
 				<view class="hx-comment_basic-info_center_item">
@@ -26,10 +26,10 @@
 						<text>新鲜</text>
 					</view>
 					<view class="hx-comment_basic-info_center_item_center">
-						<uni-rate size="14" value="4.5"></uni-rate>
+						<uni-rate size="14" :value="commentData.freshness"></uni-rate>
 					</view>
 					<view class="hx-comment_basic-info_center_item_right">
-						<text>4.5</text>
+						<text>{{ commentData.freshness }}</text>
 					</view>
 				</view>
 			</view>
@@ -37,7 +37,7 @@
 				
 				<view class="hx-comment_basic-info_right_top">
 					<view class="hx-comment_basic-info_right_top">
-						<text>95%</text>
+						<text>{{ commentData.delivery }}%</text>
 					</view>
 					<view class="hx-comment_basic-info_right_bottom">
 						<text>配送满意度</text>
@@ -48,8 +48,8 @@
 		<view class="hx-comment_dividing-line15"></view>
 		<view class="hx-comment_main-box">
 			
-			<view class="lists" v-if="listData.length > 0">
-				<block v-for="(item, index_) in listData" :key="index_">
+			<view class="lists" v-if="commentData.commentList.length > 0">
+				<block v-for="(item, index_) in commentData.commentList" :key="index_">
 					<view class="item">
 						<view class="icon"><image :src="item.headerImg" mode="widthFix" style="width:100%" /></view>
 						<view class="info">
@@ -92,8 +92,8 @@
 		},
 		props: {
 			//评价列表数据
-			listData: {
-				type: Array,
+			commentData: {
+				type: Object,
 				default: function(){
 					return [];
 				},
