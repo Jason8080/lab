@@ -107,7 +107,7 @@
 									<view class="category" v-for="item in categoryList" :key="item.id" :id="'goodsBox'+item.id">
 										<view class="s-item">{{item.name}}</view>
 										<view class="list">
-											<view class="box" v-for="(rowData,i) in goodsList" :key="rowData.id" v-if="item.id == rowData.type_id">
+											<view class="box" v-for="(rowData,i) in item.goodsList" :key="rowData.id" v-if="item.id == rowData.typeId">
 												<!-- 商品列表 -->
 												<!-- <m-store-pro @touchOnGoods="touchOnGoods" :rowData="box"></m-store-pro>
 													 -->
@@ -121,13 +121,13 @@
 															{{rowData.name}}
 														</view>
 														<view class="m-descripe">
-															{{rowData.descripe}}
+															{{rowData.descRipe}}
 														</view>
 														<view class="m-price-box">
 															<view class="symbol">￥</view>
 															<view class="m-price">{{rowData.price}}</view>
-															<view class="m-old-price" v-if="rowData.oldprice">
-																<text>￥{{rowData.oldprice}}</text>
+															<view class="m-old-price" v-if="rowData.oldPrice">
+																<text>￥{{rowData.oldPrice}}</text>
 															</view>
 														</view>
 														<view class="m-distance">
@@ -210,7 +210,6 @@
 		<view class="foot" @touchmove.stop.prevent="mpClear" :style="{height: footHeight}" v-if="showFoot">
 			<view class="zz" @click="hideShoppingCar"></view>
 			<view class="content">
-				<button @tap="showModal=true">弹出键盘</button>
 				<gm-model :show="showModal" @close="close"></gm-model>
 			</view>
 			<view class="btn-box">
@@ -315,7 +314,6 @@
 	//引入相关数据
 	import merchant from "@/common/merchant-data.js";
 	import comment from "@/common/comment-data.js";
-	import goods from "@/common/goods-data.js";
 	import category from "@/common/category-data.js";
 
 	var statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
@@ -334,9 +332,9 @@
 				//商家信息
 				storeData: merchant.storeData,
 				//商品列表
-				goodsList: goods.goodsData,
+				goodsList: category.goodsList,
 				//商品分类信息列表
-				categoryList: category.categoryData,
+				categoryList: category.categoryList,
 				//评论列表
 				commentList: comment.commentData,
 
@@ -453,10 +451,10 @@
 			init() {
 				let that = this;
 				// 初始化商品分类
-				 category.categoryLoad().then(data => that.categoryList=data);
+				category.categoryLoad().then(data => that.categoryList=data);
 				
 				//假设这是从后台获取的商品数据
-				let goods = this.goodsList;
+				let goods = that.goodsList;
 				//商品初始化
 
 				for (let i in goods) {
