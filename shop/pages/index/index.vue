@@ -455,36 +455,34 @@
 				// 初始化评论数据
 				comment.commentLoad().then(data => that.commentData=data);
 				
-				//假设这是从后台获取的商品数据
-				let goods = that.goodsList;
-				//商品初始化
-
-				for (let i in goods) {
-					goods[i].purchases = 3
-				}
-
-				let carts = uni.getStorageSync(that.shoppingCartStorageName) || [];
 				//根据缓存数据 获取购物车中属于本商店的商品
+				let carts = uni.getStorageSync(that.shoppingCartStorageName) || [];
 				for (let i in carts) {
 					if (carts[i].storeId == that.storeData.storeId) {
 						that.shoppCart = carts[i].shoppingCart;
 						break;
 					}
 				}
-
-				for (let i in that.shoppCart) {
-					for (let j in goods) {
-						if (goods[j].id == that.shoppCart[i].id) {
-							goods[j].number = that.shoppCart[i].number
+				
+				for (let c in that.categoryList) {
+					let goods = that.categoryList[c].goodsList;
+					for (let i in goods) {
+						goods[i].purchases = 3
+					}
+					for (let i in that.shoppCart) {
+						for (let j in goods) {
+							if (goods[j].id == that.shoppCart[i].id) {
+								goods[j].number = that.shoppCart[i].number
+							}
+						}
+						if(c==0){ // 购物车总价格计算一次即可
+							//计算商品总价
+							that.goodsTotalPrice += that.shoppCart[i].total
+							//商品总数量
+							that.goodsTotalNumber += that.shoppCart[i].number
 						}
 					}
-					//计算商品总价
-					that.goodsTotalPrice += that.shoppCart[i].total
-					//商品总数量
-					that.goodsTotalNumber += that.shoppCart[i].number
 				}
-				//初始化商品列表
-				that.goodsList = goods;
 
 				//初始化起步价和配送费
 				that.startingPrice = that.storeData.startingPrice;
