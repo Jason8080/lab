@@ -16,7 +16,7 @@ const storeData =
 	//配送时间
 	deliveryTime: '11:00~20:30',
 	//联系电话
-	telephone: '18888888888',
+	telephone: '13173760709',
 	//商家购物车
 	shoppingCart: [],
 	//配送费
