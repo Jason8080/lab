@@ -24,7 +24,7 @@ const categoryList = [
 				id: 4,
 				typeId:4,
 				name:'茵茵XL婴儿尿片',
-				descRipe:"脆糯营养，口感好，健康绿色",
+				descRipe:"舒爽透气，薄吸多，持久耐用",
 				img:'/static/www/goods_2.jpg',
 				price:"74",
 				oldPrice:"99",
