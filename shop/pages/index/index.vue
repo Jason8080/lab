@@ -247,7 +247,7 @@
 			</view>
 			<view class="cart-box" :style="{display: showCar ? 'flex' : 'none'}">
 				<view class="box-container rebate-box" v-if="showDiscount">
-					<text>已享100减25</text>
+					<text>已享折后优惠</text>
 				</view>
 				<view class="box-container operating-box">
 					<view class="operating-box_right">
