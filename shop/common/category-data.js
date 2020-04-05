@@ -13,7 +13,23 @@ const categoryList = [
 				price:"2.5",
 				oldPrice:"5",
 				unit:"斤",
-			}
+			},
+		]
+	},
+	{
+		id: 4,
+		name: '母婴妇幼', 
+		goodsList: [
+			{   
+				id: 4,
+				typeId:4,
+				name:'茵茵XL婴儿尿片',
+				descRipe:"脆糯营养，口感好，健康绿色",
+				img:'/static/www/goods_2.jpg',
+				price:"74",
+				oldPrice:"99",
+				unit:"箱(92片)",
+			},
 		]
 	}
 ];
