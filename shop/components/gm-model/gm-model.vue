@@ -10,7 +10,7 @@
 				<view class="close"></view>
 			</view>
 			<view class="imgBox">
-				<image src="../../static/qr/merchantQr.jpg" mode=""></image>
+				<image :src="merchantQr" mode=""></image>
 			</view>
 		</view>
 		
@@ -20,6 +20,7 @@
 <script>
 	export default {
 		props: {
+			merchantQr:'',
 			show: {
 				type: Boolean,
 				default: false 

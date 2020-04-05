@@ -211,7 +211,7 @@
 		<view class="foot" @touchmove.stop.prevent="mpClear" :style="{height: footHeight}" v-if="showFoot">
 			<view class="zz" @click="hideShoppingCar"></view>
 			<view class="content">
-				<gm-model :show="showModal" @close="close"></gm-model>
+				<gm-model :show="showModal" :merchantQr="storeData.merchantQr" @close="close"></gm-model>
 			</view>
 			<view class="btn-box">
 				<view class="btn-box-left" @click="contact">
