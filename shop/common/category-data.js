@@ -10,8 +10,9 @@ const categoryList = [
 				name:'黄瓜',
 				descRipe:"脆糯营养，口感好，健康绿色",
 				img:'/static/www/goods_1.jpg',
-				price:"9",
-				oldPrice:"100"
+				price:"2.5",
+				oldPrice:"5",
+				unit:"斤",
 			}
 		]
 	}

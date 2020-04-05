@@ -129,6 +129,7 @@
 															<view class="m-old-price" v-if="rowData.oldPrice">
 																<text>￥{{rowData.oldPrice}}</text>
 															</view>
+															<view class="m-unit">/ {{rowData.unit}}</view>
 														</view>
 														<view class="m-distance">
 															<view :class="'addEle_' + i" class="jumpPosition">
@@ -257,7 +258,7 @@
 						<text>清空购物车</text>
 					</view>
 				</view>
-				<view class=" goods-box">
+				<view class="goods-box">
 					<view class="" style="flex: 1;">
 						<scroll-view scroll-y="true" class="goods-list-scroll" :scroll-top="carGoodsScrollTop">
 							<view class="goods-list">
@@ -272,14 +273,15 @@
 												{{rowData.name}}
 											</view>
 											<view class="m-descripe">
-												{{rowData.descripe}}
+												{{rowData.descRipe}}
 											</view>
 											<view class="m-price-box">
 												<view class="symbol">￥</view>
 												<view class="m-price">{{rowData.price}}</view>
 												<view class="m-old-price">
-													<text>￥{{rowData.oldprice}}</text>
+													<text>￥{{rowData.oldPrice}}</text>
 												</view>
+												<view class="m-unit">/ {{rowData.unit}}</view>
 											</view>
 											<view class="m-distance">
 												<view :class="'addEle2_' + i" class="jumpPosition">
@@ -1285,6 +1287,16 @@
 															text-decoration: line-through;
 															font-weight: normal;
 														}
+
+														.m-unit {
+															margin-left: 3px;
+															display: flex;
+															flex-direction: row;
+															font-size: 10px;
+															color: #999999;
+															margin-top: 5upx;
+															font-weight: normal;
+														}
 													}
 
 													.m-distance {
@@ -1655,6 +1667,16 @@
 												color: #999999;
 												margin-top: 5upx;
 												text-decoration: line-through;
+												font-weight: normal;
+											}
+
+											.m-unit {
+												margin-left: 3px;
+												display: flex;
+												flex-direction: row;
+												font-size: 10px;
+												color: #999999;
+												margin-top: 5upx;
 												font-weight: normal;
 											}
 										}
