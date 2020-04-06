@@ -46,7 +46,7 @@
 					十里桃花
 				</view>
 				<view class="hx-txt-14 hx-color-black ">
-					店家说明,本店放心吃，地方名才
+					店家说明,本店放心购买,好货层层把关。
 				</view>
 				<!-- <view class="">
 					后续再扩展优惠券，满减，折扣，活动等功能
@@ -203,6 +203,21 @@
 							</view>
 						</view>
 					</view>
+				</swiper-item>
+				
+				<!-- 我的 -->
+				<swiper-item class="swiper-item">
+					<scroll-view scroll-y style="height: 100%;width: 100%;background-color: #ffffff;" @scroll="asideScroll">
+						<view class="scroll-items evaluate-box">
+							<view class="evaluate-box-header">
+				
+							</view>
+							<view class="evaluate-box-body">
+				
+							</view>
+							<gm-my></gm-my>
+						</view>
+					</scroll-view>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -368,6 +383,9 @@
 					},
 					{
 						name: '商家'
+					},
+					{
+						name: '我的'
 					},
 				],
 				swiperCurrent: 0,
@@ -1054,7 +1072,7 @@
 			height: 40px;
 
 			.hx-tabs {
-				position: relative;
+				position: absolute;
 				display: flex;
 				height: 100%;
 

@@ -18,7 +18,15 @@
 				}
 			}
 		}
-	],
+	    ,{
+            "path" : "components/gm-map/gm-map",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/gm-my/gm-my",
+            "style" : {}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
