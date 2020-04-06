@@ -224,7 +224,7 @@
 
 		<!-- 购物车 -->
 		<view class="foot" @touchmove.stop.prevent="mpClear" :style="{height: footHeight}" v-if="showFoot">
-			<view class="zz" @click="hideShoppingCar"></view>
+			<view class="zz" @click="hideShoppingCar()"></view>
 			<view class="content">
 				<gm-model :show="showModal" :merchantQr="storeData.merchantQr" @close="close"></gm-model>
 			</view>
@@ -236,7 +236,7 @@
 					<text>联系商家</text>
 				</view>
 				<view class="btn-box-line"></view>
-				<view class="btn-box-center" @click="showShoppingCar">
+				<view class="btn-box-center" @click="showHideShoppingCar">
 					<view class="cart" :animation="cartAnimationData">
 						<view class="tag cartNum" v-if="goodsTotalNumber>0">{{goodsTotalNumber}}</view>
 						<image :src="goodsTotalNumber ? '/static/store/cart.png' : '/static/store/cart2.png'" mode=""></image>
@@ -763,15 +763,21 @@
 				// TODO nvue 取消冒泡
 				e.stopPropagation()
 			},
-
+			showHideShoppingCar(){
+				if(!this.showCar){
+					this.showShoppingCar();
+				} else {
+					this.hideShoppingCar();
+				}
+			},
 			//显示购物车
 			showShoppingCar() {
 				if (this.goodsTotalNumber == 0) {
 					return;
 				}
 				this.footHeight = '100%';
-				this.showCar = true;
 				this.carGoodsScrollTop = 0;
+				this.showCar = true;
 			},
 			//隐藏购物车
 			hideShoppingCar() {
