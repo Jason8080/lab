@@ -36,6 +36,7 @@ function sourced(e) {
 
     $(e).on('click', 'tr', function () {
         var row = table.row( this ).data();
+        alert("需要 {"+row+"} 做什么呢?");
         console.log(row);
     } );
 }

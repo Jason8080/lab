@@ -22,7 +22,7 @@ function bar(e){
 	// 使用刚指定的配置项和数据显示图表。
 	myChart.setOption(option);
 
-	myChart.on("click", pieClick);
+	myChart.on("click", barClick);
 }
 
 function pie(e){
@@ -99,8 +99,10 @@ function pie(e){
 }
 
 function barClick(bar) {
+	alert("需要 {"+bar.name + ";" + bar.value +"} 做什么呢?");
 	console.log(bar);
 }
 function pieClick(pie) {
+	alert("需要 {"+pie.name + ";" + pie.value +"} 做什么呢?");
 	console.log(pie);
 }
